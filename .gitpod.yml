@@ -30,8 +30,9 @@ tasks:
       # In case stack would be used, you want to setup GHC and other things for
       # the project right now. Or hls will race to do similar things on IDE
       # startup, which tends to corrupt things with unstable network connection.
-      cd /workspace/cis-194-spring-2022
+      cd /workspace/cis-194-summer-2022
       stack setup
+      stack build
 
     # These will run each time a new Gitpod workspace is open
     command: |
