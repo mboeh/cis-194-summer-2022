@@ -12,7 +12,14 @@ toDigits = reverse . toDigitsRev
 
 -- #1b
 toDigitsRev :: Integer -> [Integer]
-toDigitsRev = unfoldr digits
+toDigitsRev n
+  | n <= 0 = []
+  | otherwise = r : toDigitsRev d
+  where
+    (d, r) = divMod n 10
+
+toDigitsRev' :: Integer -> [Integer]
+toDigitsRev' = unfoldr digits
   where
     digits n = splitN <$> mfilter (> 0) (Just n)
     splitN n = swap $ divMod n 10
@@ -38,7 +45,8 @@ type Peg = String
 type Move = (Peg, Peg)
 
 hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
-hanoi = undefined
+hanoi 0 _ _ _ = []
+hanoi n a b c = hanoi (n - 1) a c b ++ [(a, b)] ++ hanoi (n - 1) c b a
 
 hanoi4 :: Integer -> Peg -> Peg -> Peg -> Peg -> [Move]
 hanoi4 = undefined
